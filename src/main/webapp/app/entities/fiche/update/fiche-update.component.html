@@ -1,99 +1,160 @@
-<div class="accordion" id="ficheAccordion">
-  <!-- Identification Section -->
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="headingIdentification">
-      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseIdentification" aria-expanded="true" aria-controls="collapseIdentification">
-        Identification
-      </button>
-    </h2>
-    <div id="collapseIdentification" class="accordion-collapse collapse show" aria-labelledby="headingIdentification" data-bs-parent="#ficheAccordion">
-      <div class="accordion-body">
-        <!-- Form fields for Identification -->
-      </div>
-    </div>
-  </div>
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-fiche-heading" data-cy="FicheCreateUpdateHeading">Créer ou éditer un Fiche</h2>
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+        <div class="accordion" id="ficheAccordion">
 
-  <!-- Antécédents Section -->
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="headingAntecedents">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAntecedents" aria-expanded="false" aria-controls="collapseAntecedents">
-        Antécédents
-      </button>
-    </h2>
-    <div id="collapseAntecedents" class="accordion-collapse collapse" aria-labelledby="headingAntecedents" data-bs-parent="#ficheAccordion">
-      <div class="accordion-body">
-        <!-- Form fields for Antécédents -->
-      </div>
-    </div>
-  </div>
+          <!-- Identification Section -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingIdentification">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseIdentification" aria-expanded="true" aria-controls="collapseIdentification">
+                Identification
+              </button>
+            </h2>
+            <div id="collapseIdentification" class="accordion-collapse collapse show" aria-labelledby="headingIdentification" data-bs-parent="#ficheAccordion">
+              <div class="accordion-body">
+                <div class="mb-3">
+                  <label class="form-label" for="field_id">ID</label>
+                  <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" for="field_dossierNumber">Dossier Number</label>
+                  <input type="text" class="form-control" name="dossierNumber" id="field_dossierNumber" data-cy="dossierNumber" formControlName="dossierNumber" />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" for="field_ordreNumber">Ordre Number</label>
+                  <input type="text" class="form-control" name="ordreNumber" id="field_ordreNumber" data-cy="ordreNumber" formControlName="ordreNumber" />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" for="field_indexNumber">Index Number</label>
+                  <input type="text" class="form-control" name="indexNumber" id="field_indexNumber" data-cy="indexNumber" formControlName="indexNumber" />
+                </div>
+              </div>
+            </div>
+          </div>
 
-  <!-- Circonstances de découverte Section -->
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="headingCirconstances">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCirconstances" aria-expanded="false" aria-controls="collapseCirconstances">
-        Circonstances de découverte
-      </button>
-    </h2>
-    <div id="collapseCirconstances" class="accordion-collapse collapse" aria-labelledby="headingCirconstances" data-bs-parent="#ficheAccordion">
-      <div class="accordion-body">
-        <!-- Form fields for Circonstances de découverte -->
-      </div>
-    </div>
-  </div>
+          <!-- Diagnostic Section -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingDiagnostic">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDiagnostic" aria-expanded="false" aria-controls="collapseDiagnostic">
+                Diagnostic
+              </button>
+            </h2>
+            <div id="collapseDiagnostic" class="accordion-collapse collapse" aria-labelledby="headingDiagnostic" data-bs-parent="#ficheAccordion">
+              <div class="accordion-body">
+                <div class="mb-3">
+                  <label class="form-label" for="field_anneeDiagnostic">Annee Diagnostic</label>
+                  <input type="number" class="form-control" name="anneeDiagnostic" id="field_anneeDiagnostic" data-cy="anneeDiagnostic" formControlName="anneeDiagnostic" />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" for="field_diagnostic">Diagnostic</label>
+                  <select class="form-control" name="diagnostic" formControlName="diagnostic" id="field_diagnostic" data-cy="diagnostic">
+                    <option [ngValue]="null"></option>
+                    <option *ngFor="let diagnosticType of diagnosticTypeValues" [ngValue]="diagnosticType">{{ diagnosticType }}</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" for="field_autreDiagnostic">Autre Diagnostic</label>
+                  <input type="text" class="form-control" name="autreDiagnostic" id="field_autreDiagnostic" data-cy="autreDiagnostic" formControlName="autreDiagnostic" />
+                </div>
+              </div>
+            </div>
+          </div>
 
-  <!-- Biologie au moment du diagnostic Section -->
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="headingBiologie">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseBiologie" aria-expanded="false" aria-controls="collapseBiologie">
-        Biologie au moment du diagnostic
-      </button>
-    </h2>
-    <div id="collapseBiologie" class="accordion-collapse collapse" aria-labelledby="headingBiologie" data-bs-parent="#ficheAccordion">
-      <div class="accordion-body">
-        <!-- Form fields for Biologie au moment du diagnostic -->
-      </div>
-    </div>
-  </div>
+          <!-- Consentement Section -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingConsentement">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseConsentement" aria-expanded="false" aria-controls="collapseConsentement">
+                Consentement
+              </button>
+            </h2>
+            <div id="collapseConsentement" class="accordion-collapse collapse" aria-labelledby="headingConsentement" data-bs-parent="#ficheAccordion">
+              <div class="accordion-body">
+                <div class="mb-3">
+                  <label class="form-label" for="field_dateEnregistrementRegistre">Date Enregistrement Registre</label>
+                  <div class="input-group">
+                    <input id="field_dateEnregistrementRegistre" data-cy="dateEnregistrementRegistre" type="text" class="form-control" name="dateEnregistrementRegistre" ngbDatepicker #dateEnregistrementRegistreDp="ngbDatepicker" formControlName="dateEnregistrementRegistre" />
+                    <button type="button" class="btn btn-secondary" (click)="dateEnregistrementRegistreDp.toggle()">
+                      <fa-icon icon="calendar-alt"></fa-icon>
+                    </button>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" for="field_consentementRegistre">Consentement Registre</label>
+                  <input type="checkbox" class="form-check" name="consentementRegistre" id="field_consentementRegistre" data-cy="consentementRegistre" formControlName="consentementRegistre" />
+                </div>
+              </div>
+            </div>
+          </div>
 
-  <!-- Manifestations cliniques Section -->
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="headingManifestations">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseManifestations" aria-expanded="false" aria-controls="collapseManifestations">
-        Manifestations cliniques
-      </button>
-    </h2>
-    <div id="collapseManifestations" class="accordion-collapse collapse" aria-labelledby="headingManifestations" data-bs-parent="#ficheAccordion">
-      <div class="accordion-body">
-        <!-- Form fields for Manifestations cliniques -->
-      </div>
-    </div>
-  </div>
+          <!-- Historique Familial Section -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingHistoriqueFamilial">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHistoriqueFamilial" aria-expanded="false" aria-controls="collapseHistoriqueFamilial">
+                Historique Familial
+              </button>
+            </h2>
+            <div id="collapseHistoriqueFamilial" class="accordion-collapse collapse" aria-labelledby="headingHistoriqueFamilial" data-bs-parent="#ficheAccordion">
+              <div class="accordion-body">
+                <div class="mb-3">
+                  <label class="form-label" for="field_parentsConsanguins">Parents Consanguins</label>
+                  <select class="form-control" name="parentsConsanguins" formControlName="parentsConsanguins" id="field_parentsConsanguins" data-cy="parentsConsanguins">
+                    <option [ngValue]="null"></option>
+                    <option *ngFor="let ouiNonNP of ouiNonNPValues" [ngValue]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" for="field_casSimilairesFamille">Cas Similaires Famille</label>
+                  <select class="form-control" name="casSimilairesFamille" formControlName="casSimilairesFamille" id="field_casSimilairesFamille" data-cy="casSimilairesFamille">
+                    <option [ngValue]="null"></option>
+                    <option *ngFor="let ouiNonNP of ouiNonNPValues" [ngValue]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
 
-  <!-- Prise en charge thérapeutique Section -->
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="headingPriseEnCharge">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePriseEnCharge" aria-expanded="false" aria-controls="collapsePriseEnCharge">
-        Prise en charge thérapeutique
-      </button>
-    </h2>
-    <div id="collapsePriseEnCharge" class="accordion-collapse collapse" aria-labelledby="headingPriseEnCharge" data-bs-parent="#ficheAccordion">
-      <div class="accordion-body">
-        <!-- Form fields for Prise en charge thérapeutique -->
-      </div>
-    </div>
-  </div>
+          <!-- Etat Section -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingEtat">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEtat" aria-expanded="false" aria-controls="collapseEtat">
+                Etat
+              </button>
+            </h2>
+            <div id="collapseEtat" class="accordion-collapse collapse" aria-labelledby="headingEtat" data-bs-parent="#ficheAccordion">
+              <div class="accordion-body">
+                <div class="mb-3">
+                  <label class="form-label" for="field_vieSociale">Vie Sociale</label>
+                  <select class="form-control" name="vieSociale" formControlName="vieSociale" id="field_vieSociale" data-cy="vieSociale">
+                    <option [ngValue]="null"></option>
+                    <option *ngFor="let vieSocialeStatus of vieSocialeStatusValues" [ngValue]="vieSocialeStatus">{{ vieSocialeStatus }}</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" for="field_handicap">Handicap</label>
+                  <select class="form-control" name="handicap" formControlName="handicap" id="field_handicap" data-cy="handicap">
+                    <option [ngValue]="null"></option>
+                    <option *ngFor="let ouiNonNP of ouiNonNPValues" [ngValue]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
 
-  <!-- Complications et évolution Section -->
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="headingComplications">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseComplications" aria-expanded="false" aria-controls="collapseComplications">
-        Complications et évolution
-      </button>
-    </h2>
-    <div id="collapseComplications" class="accordion-collapse collapse" aria-labelledby="headingComplications" data-bs-parent="#ficheAccordion">
-      <div class="accordion-body">
-        <!-- Form fields for Complications et évolution -->
+        </div>
       </div>
-    </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Annuler</span>
+        </button>
+
+        <button type="submit" id="save-entity" data-cy="entityCreateSaveButton" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Sauvegarder</span>
+        </button>
+      </div>
+    </form>
   </div>
 </div>
