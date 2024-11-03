@@ -50,6 +50,15 @@ public class CacheConfiguration {
             createCache(cm, org.adhes.hemophilie.domain.User.class.getName());
             createCache(cm, org.adhes.hemophilie.domain.Authority.class.getName());
             createCache(cm, org.adhes.hemophilie.domain.User.class.getName() + ".authorities");
+            createCache(cm, org.adhes.hemophilie.domain.Patient.class.getName());
+            createCache(cm, org.adhes.hemophilie.domain.Patient.class.getName() + ".fiches");
+            createCache(cm, org.adhes.hemophilie.domain.Fiche.class.getName());
+            createCache(cm, org.adhes.hemophilie.domain.Hemarthrose.class.getName());
+            createCache(cm, org.adhes.hemophilie.domain.HematomeSuperficiel.class.getName());
+            createCache(cm, org.adhes.hemophilie.domain.HematomePsoas.class.getName());
+            createCache(cm, org.adhes.hemophilie.domain.HemorragiesCutaneoMuqueuses.class.getName());
+            createCache(cm, org.adhes.hemophilie.domain.HemorragieVisceres.class.getName());
+            createCache(cm, org.adhes.hemophilie.domain.SaignementSNC.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

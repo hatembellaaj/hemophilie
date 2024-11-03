@@ -1,0 +1,33 @@
+{
+  "annotations": {
+    "changelogDate": "20241103170722"
+  },
+  "applications": "*",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "reponse",
+      "fieldType": "OuiNonNP",
+      "fieldValues": "OUI,NON,NP"
+    },
+    {
+      "fieldName": "type",
+      "fieldType": "TypeHemorragieVisceres",
+      "fieldValues": "HEMATEMESE,RECTORRAGIE,HEMATURIE"
+    },
+    {
+      "fieldName": "exploration",
+      "fieldType": "OuiNonNP",
+      "fieldValues": "OUI,NON,NP"
+    },
+    {
+      "fieldName": "examenLesion",
+      "fieldType": "String"
+    }
+  ],
+  "name": "HemorragieVisceres",
+  "pagination": "pagination",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

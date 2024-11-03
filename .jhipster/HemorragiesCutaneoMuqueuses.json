@@ -1,0 +1,28 @@
+{
+  "annotations": {
+    "changelogDate": "20241103170721"
+  },
+  "applications": "*",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "reponse",
+      "fieldType": "OuiNonNP",
+      "fieldValues": "OUI,NON,NP"
+    },
+    {
+      "fieldName": "type",
+      "fieldType": "TypeHemorragie",
+      "fieldValues": "CHUTE_DENTAIRE,PLAIE_LANGUE,GINGIVORRAGIES,EPISTAXIS,ECHYMOSES"
+    },
+    {
+      "fieldName": "frequencePerAn",
+      "fieldType": "Integer"
+    }
+  ],
+  "name": "HemorragiesCutaneoMuqueuses",
+  "pagination": "pagination",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

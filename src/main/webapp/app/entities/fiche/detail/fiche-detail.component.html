@@ -1,0 +1,343 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (fiche(); as ficheRef) {
+      <div>
+        <h2 data-cy="ficheDetailsHeading"><span>Fiche</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span>ID</span></dt>
+          <dd>
+            <span>{{ ficheRef.id }}</span>
+          </dd>
+          <dt><span>Dossier Number</span></dt>
+          <dd>
+            <span>{{ ficheRef.dossierNumber }}</span>
+          </dd>
+          <dt><span>Ordre Number</span></dt>
+          <dd>
+            <span>{{ ficheRef.ordreNumber }}</span>
+          </dd>
+          <dt><span>Index Number</span></dt>
+          <dd>
+            <span>{{ ficheRef.indexNumber }}</span>
+          </dd>
+          <dt><span>Annee Diagnostic</span></dt>
+          <dd>
+            <span>{{ ficheRef.anneeDiagnostic }}</span>
+          </dd>
+          <dt><span>Diagnostic</span></dt>
+          <dd>
+            <span>{{
+              {
+                null: '',
+                HEMOPHILIE: 'HEMOPHILIE',
+                WILLEBRAND: 'WILLEBRAND',
+                THROMBOPATHIE: 'THROMBOPATHIE',
+                DEFICIT_FACTEUR_VII: 'DEFICIT_FACTEUR_VII',
+                DEFICIT_FACTEUR_XI: 'DEFICIT_FACTEUR_XI',
+                DEFICIT_FACTEUR_XIII: 'DEFICIT_FACTEUR_XIII',
+                DEFICIT_COMBINE: 'DEFICIT_COMBINE',
+              }[ficheRef.diagnostic ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>Autre Diagnostic</span></dt>
+          <dd>
+            <span>{{ ficheRef.autreDiagnostic }}</span>
+          </dd>
+          <dt><span>Date Enregistrement Registre</span></dt>
+          <dd>
+            <span>{{ ficheRef.dateEnregistrementRegistre | formatMediumDate }}</span>
+          </dd>
+          <dt><span>Consentement Registre</span></dt>
+          <dd>
+            <span>{{ ficheRef.consentementRegistre }}</span>
+          </dd>
+          <dt><span>Parents Consanguins</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheRef.parentsConsanguins ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Degre Parente Consanguins</span></dt>
+          <dd>
+            <span>{{ ficheRef.degreParenteConsanguins }}</span>
+          </dd>
+          <dt><span>Cas Similaires Famille</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheRef.casSimilairesFamille ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Nbre Cas Similaires</span></dt>
+          <dd>
+            <span>{{ ficheRef.nbreCasSimilaires }}</span>
+          </dd>
+          <dt><span>Degre Parente Cas Similaires</span></dt>
+          <dd>
+            <span>{{ ficheRef.degreParenteCasSimilaires }}</span>
+          </dd>
+          <dt><span>Cas Deces Syndrome Hemorragique</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheRef.casDecesSyndromeHemorragique ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Nbre Cas Deces</span></dt>
+          <dd>
+            <span>{{ ficheRef.nbreCasDeces }}</span>
+          </dd>
+          <dt><span>Forme Hemophilie</span></dt>
+          <dd>
+            <span>{{ { null: '', SPORADIQUE: 'SPORADIQUE', HEREDITAIRE: 'HEREDITAIRE' }[ficheRef.formeHemophilie ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Nbre Freres</span></dt>
+          <dd>
+            <span>{{ ficheRef.nbreFreres }}</span>
+          </dd>
+          <dt><span>Nbre Soeurs</span></dt>
+          <dd>
+            <span>{{ ficheRef.nbreSoeurs }}</span>
+          </dd>
+          <dt><span>Date Test Confirmation</span></dt>
+          <dd>
+            <span>{{ ficheRef.dateTestConfirmation | formatMediumDate }}</span>
+          </dd>
+          <dt><span>Hemogramme Hb</span></dt>
+          <dd>
+            <span>{{ ficheRef.hemogrammeHb }}</span>
+          </dd>
+          <dt><span>Hemogramme Ht</span></dt>
+          <dd>
+            <span>{{ ficheRef.hemogrammeHt }}</span>
+          </dd>
+          <dt><span>Plaquettes</span></dt>
+          <dd>
+            <span>{{ ficheRef.plaquettes }}</span>
+          </dd>
+          <dt><span>Tp</span></dt>
+          <dd>
+            <span>{{ ficheRef.tp }}</span>
+          </dd>
+          <dt><span>Fibrinogene</span></dt>
+          <dd>
+            <span>{{ ficheRef.fibrinogene }}</span>
+          </dd>
+          <dt><span>Tca MT</span></dt>
+          <dd>
+            <span>{{ ficheRef.tcaMT }}</span>
+          </dd>
+          <dt><span>Tca MT 2 H</span></dt>
+          <dd>
+            <span>{{ ficheRef.tcaMT2h }}</span>
+          </dd>
+          <dt><span>Tca Temoin 2 H</span></dt>
+          <dd>
+            <span>{{ ficheRef.tcaTemoin2h }}</span>
+          </dd>
+          <dt><span>Ts</span></dt>
+          <dd>
+            <span>{{ { null: '', FAIT: 'FAIT', NON_FAIT: 'NON_FAIT', NORMAL: 'NORMAL', ALLONGE: 'ALLONGE' }[ficheRef.ts ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Circumstance Decouverte</span></dt>
+          <dd>
+            <span>{{
+              { null: '', FORTUITE: 'FORTUITE', FAMILIALE: 'FAMILIALE', SYNDROME_HEMORRAGIQUE: 'SYNDROME_HEMORRAGIQUE' }[
+                ficheRef.circumstanceDecouverte ?? 'null'
+              ]
+            }}</span>
+          </dd>
+          <dt><span>Date 1 Er Signe Clinique</span></dt>
+          <dd>
+            <span>{{ ficheRef.date1erSigneClinique | formatMediumDate }}</span>
+          </dd>
+          <dt><span>Age Diagnostic</span></dt>
+          <dd>
+            <span>{{ ficheRef.ageDiagnostic }}</span>
+          </dd>
+          <dt><span>Prise En Charge</span></dt>
+          <dd>
+            <span>{{ { null: '', A_LA_DEMANDE: 'A_LA_DEMANDE', PROPHYLAXIE: 'PROPHYLAXIE' }[ficheRef.priseEnCharge ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Cause Prise En Charge</span></dt>
+          <dd>
+            <span>{{ ficheRef.causePriseEnCharge }}</span>
+          </dd>
+          <dt><span>Dose Prophylaxie</span></dt>
+          <dd>
+            <span>{{ ficheRef.doseProphylaxie }}</span>
+          </dd>
+          <dt><span>Frequence Prophylaxie</span></dt>
+          <dd>
+            <span>{{ ficheRef.frequenceProphylaxie }}</span>
+          </dd>
+          <dt><span>Debut Prophylaxie</span></dt>
+          <dd>
+            <span>{{ ficheRef.debutProphylaxie | formatMediumDate }}</span>
+          </dd>
+          <dt><span>Modalite Injection</span></dt>
+          <dd>
+            <span>{{
+              { null: '', AUTO_INJECTION: 'AUTO_INJECTION', INJECTION_PARENT: 'INJECTION_PARENT', INJECTION_HOPITAL: 'INJECTION_HOPITAL' }[
+                ficheRef.modaliteInjection ?? 'null'
+              ]
+            }}</span>
+          </dd>
+          <dt><span>Type Traitement Substitutif</span></dt>
+          <dd>
+            <span>{{
+              { null: '', PLASMATIQUE: 'PLASMATIQUE', RECOMBINANT: 'RECOMBINANT' }[ficheRef.typeTraitementSubstitutif ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>Age 1 Ere Substitution</span></dt>
+          <dd>
+            <span>{{ ficheRef.age1ereSubstitution }}</span>
+          </dd>
+          <dt><span>Psl</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheRef.psl ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Plasma Frais Congele</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheRef.plasmaFraisCongele ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Cryoprecipite</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheRef.cryoprecipite ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Complications Orthopediques</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheRef.complicationsOrthopediques ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Complication Inhibiteurs</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheRef.complicationInhibiteurs ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Test Recuperation FAH</span></dt>
+          <dd>
+            <span>{{
+              { null: '', FAIT: 'FAIT', NON_FAIT: 'NON_FAIT', NORMAL: 'NORMAL', ALLONGE: 'ALLONGE' }[ficheRef.testRecuperationFAH ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>Resultat Test Recuperation</span></dt>
+          <dd>
+            <span>{{ { null: '', NORMAL: 'NORMAL', DIMINUE: 'DIMINUE' }[ficheRef.resultatTestRecuperation ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Vie Sociale</span></dt>
+          <dd>
+            <span>{{
+              { null: '', PRESCOLAIRE: 'PRESCOLAIRE', SCOLARISE: 'SCOLARISE', CHOMEUR: 'CHOMEUR', TRAVAILLE: 'TRAVAILLE' }[
+                ficheRef.vieSociale ?? 'null'
+              ]
+            }}</span>
+          </dd>
+          <dt><span>Etat Marital</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheRef.etatMarital ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Enfants</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheRef.enfants ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Handicap</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheRef.handicap ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Type Handicap</span></dt>
+          <dd>
+            <span>{{ ficheRef.typeHandicap }}</span>
+          </dd>
+          <dt><span>Activite Sportive</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheRef.activiteSportive ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Type Activite Sportive</span></dt>
+          <dd>
+            <span>{{ ficheRef.typeActiviteSportive }}</span>
+          </dd>
+          <dt><span>Decede</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheRef.decede ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Cause Date Deces</span></dt>
+          <dd>
+            <span>{{ ficheRef.causeDateDeces }}</span>
+          </dd>
+          <dt><span>Hemarthrose</span></dt>
+          <dd>
+            @if (fiche()!.hemarthrose) {
+              <div>
+                <a [routerLink]="['/hemarthrose', fiche()!.hemarthrose?.id, 'view']">{{ ficheRef.hemarthrose?.id }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span>Hematome Superficiel</span></dt>
+          <dd>
+            @if (fiche()!.hematomeSuperficiel) {
+              <div>
+                <a [routerLink]="['/hematome-superficiel', fiche()!.hematomeSuperficiel?.id, 'view']">{{
+                  ficheRef.hematomeSuperficiel?.id
+                }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span>Hematome Psoas</span></dt>
+          <dd>
+            @if (fiche()!.hematomePsoas) {
+              <div>
+                <a [routerLink]="['/hematome-psoas', fiche()!.hematomePsoas?.id, 'view']">{{ ficheRef.hematomePsoas?.id }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span>Hemorragies Cutaneo Muqueuses</span></dt>
+          <dd>
+            @if (fiche()!.hemorragiesCutaneoMuqueuses) {
+              <div>
+                <a [routerLink]="['/hemorragies-cutaneo-muqueuses', fiche()!.hemorragiesCutaneoMuqueuses?.id, 'view']">{{
+                  ficheRef.hemorragiesCutaneoMuqueuses?.id
+                }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span>Hemorragie Visceres</span></dt>
+          <dd>
+            @if (fiche()!.hemorragieVisceres) {
+              <div>
+                <a [routerLink]="['/hemorragie-visceres', fiche()!.hemorragieVisceres?.id, 'view']">{{
+                  ficheRef.hemorragieVisceres?.id
+                }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span>Saignement SNC</span></dt>
+          <dd>
+            @if (fiche()!.saignementSNC) {
+              <div>
+                <a [routerLink]="['/saignement-snc', fiche()!.saignementSNC?.id, 'view']">{{ ficheRef.saignementSNC?.id }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span>User</span></dt>
+          <dd>
+            <span>{{ ficheRef.user?.id }}</span>
+          </dd>
+          <dt><span>Patient</span></dt>
+          <dd>
+            @if (fiche()!.patient) {
+              <div>
+                <a [routerLink]="['/patient', fiche()!.patient?.id, 'view']">{{ ficheRef.patient?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Retour</span>
+        </button>
+
+        <button type="button" [routerLink]="['/fiche', ficheRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Editer</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

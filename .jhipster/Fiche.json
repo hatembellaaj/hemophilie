@@ -1,0 +1,311 @@
+{
+  "annotations": {
+    "changelogDate": "20241103170717"
+  },
+  "applications": "*",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "dossierNumber",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "ordreNumber",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "indexNumber",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "anneeDiagnostic",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "diagnostic",
+      "fieldType": "DiagnosticType",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "HEMOPHILIE,WILLEBRAND,THROMBOPATHIE,DEFICIT_FACTEUR_VII,DEFICIT_FACTEUR_XI,DEFICIT_FACTEUR_XIII,DEFICIT_COMBINE"
+    },
+    {
+      "fieldName": "autreDiagnostic",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dateEnregistrementRegistre",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "consentementRegistre",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "parentsConsanguins",
+      "fieldType": "OuiNonNP",
+      "fieldValues": "OUI,NON,NP"
+    },
+    {
+      "fieldName": "degreParenteConsanguins",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "casSimilairesFamille",
+      "fieldType": "OuiNonNP",
+      "fieldValues": "OUI,NON,NP"
+    },
+    {
+      "fieldName": "nbreCasSimilaires",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "degreParenteCasSimilaires",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "casDecesSyndromeHemorragique",
+      "fieldType": "OuiNonNP",
+      "fieldValues": "OUI,NON,NP"
+    },
+    {
+      "fieldName": "nbreCasDeces",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "formeHemophilie",
+      "fieldType": "FormeHemophilie",
+      "fieldValues": "SPORADIQUE,HEREDITAIRE"
+    },
+    {
+      "fieldName": "nbreFreres",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "nbreSoeurs",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "dateTestConfirmation",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "hemogrammeHb",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "hemogrammeHt",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "plaquettes",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "tp",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "fibrinogene",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "tcaMT",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "tcaMT2h",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "tcaTemoin2h",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "ts",
+      "fieldType": "TestStatus",
+      "fieldValues": "FAIT,NON_FAIT,NORMAL,ALLONGE"
+    },
+    {
+      "fieldName": "circumstanceDecouverte",
+      "fieldType": "CircumstanceDecouverte",
+      "fieldValues": "FORTUITE,FAMILIALE,SYNDROME_HEMORRAGIQUE"
+    },
+    {
+      "fieldName": "date1erSigneClinique",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "ageDiagnostic",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "priseEnCharge",
+      "fieldType": "PriseEnChargeType",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "A_LA_DEMANDE,PROPHYLAXIE"
+    },
+    {
+      "fieldName": "causePriseEnCharge",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "doseProphylaxie",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "frequenceProphylaxie",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "debutProphylaxie",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "modaliteInjection",
+      "fieldType": "InjectionType",
+      "fieldValues": "AUTO_INJECTION,INJECTION_PARENT,INJECTION_HOPITAL"
+    },
+    {
+      "fieldName": "typeTraitementSubstitutif",
+      "fieldType": "TraitementType",
+      "fieldValues": "PLASMATIQUE,RECOMBINANT"
+    },
+    {
+      "fieldName": "age1ereSubstitution",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "psl",
+      "fieldType": "OuiNonNP",
+      "fieldValues": "OUI,NON,NP"
+    },
+    {
+      "fieldName": "plasmaFraisCongele",
+      "fieldType": "OuiNonNP",
+      "fieldValues": "OUI,NON,NP"
+    },
+    {
+      "fieldName": "cryoprecipite",
+      "fieldType": "OuiNonNP",
+      "fieldValues": "OUI,NON,NP"
+    },
+    {
+      "fieldName": "complicationsOrthopediques",
+      "fieldType": "OuiNonNP",
+      "fieldValues": "OUI,NON,NP"
+    },
+    {
+      "fieldName": "complicationInhibiteurs",
+      "fieldType": "OuiNonNP",
+      "fieldValues": "OUI,NON,NP"
+    },
+    {
+      "fieldName": "testRecuperationFAH",
+      "fieldType": "TestStatus",
+      "fieldValues": "FAIT,NON_FAIT,NORMAL,ALLONGE"
+    },
+    {
+      "fieldName": "resultatTestRecuperation",
+      "fieldType": "TestResult",
+      "fieldValues": "NORMAL,DIMINUE"
+    },
+    {
+      "fieldName": "vieSociale",
+      "fieldType": "VieSocialeStatus",
+      "fieldValues": "PRESCOLAIRE,SCOLARISE,CHOMEUR,TRAVAILLE"
+    },
+    {
+      "fieldName": "etatMarital",
+      "fieldType": "OuiNonNP",
+      "fieldValues": "OUI,NON,NP"
+    },
+    {
+      "fieldName": "enfants",
+      "fieldType": "OuiNonNP",
+      "fieldValues": "OUI,NON,NP"
+    },
+    {
+      "fieldName": "handicap",
+      "fieldType": "OuiNonNP",
+      "fieldValues": "OUI,NON,NP"
+    },
+    {
+      "fieldName": "typeHandicap",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "activiteSportive",
+      "fieldType": "OuiNonNP",
+      "fieldValues": "OUI,NON,NP"
+    },
+    {
+      "fieldName": "typeActiviteSportive",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "decede",
+      "fieldType": "OuiNonNP",
+      "fieldValues": "OUI,NON,NP"
+    },
+    {
+      "fieldName": "causeDateDeces",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Fiche",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "hemarthrose",
+      "relationshipName": "hemarthrose",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "hematomeSuperficiel",
+      "relationshipName": "hematomeSuperficiel",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "hematomePsoas",
+      "relationshipName": "hematomePsoas",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "hemorragiesCutaneoMuqueuses",
+      "relationshipName": "hemorragiesCutaneoMuqueuses",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "hemorragieVisceres",
+      "relationshipName": "hemorragieVisceres",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "saignementSNC",
+      "relationshipName": "saignementSNC",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "user",
+      "relationshipName": "user",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one",
+      "relationshipWithBuiltInEntity": true
+    },
+    {
+      "otherEntityName": "patient",
+      "otherEntityRelationshipName": "fiches",
+      "relationshipName": "patient",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

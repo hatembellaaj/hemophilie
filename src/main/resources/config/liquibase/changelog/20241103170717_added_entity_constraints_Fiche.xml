@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <!--
+        Added the constraints for entity Fiche.
+    -->
+    <changeSet id="20241103170717-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="hemarthrose_id"
+                                 baseTableName="fiche"
+                                 constraintName="fk_fiche__hemarthrose_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="hemarthrose"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="hematome_superficiel_id"
+                                 baseTableName="fiche"
+                                 constraintName="fk_fiche__hematome_superficiel_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="hematome_superficiel"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="hematome_psoas_id"
+                                 baseTableName="fiche"
+                                 constraintName="fk_fiche__hematome_psoas_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="hematome_psoas"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="hemorragies_cutaneo_muqueuses_id"
+                                 baseTableName="fiche"
+                                 constraintName="fk_fiche__hemorragies_cutaneo_muqueuses_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="hemorragies_cutaneo_muqueuses"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="hemorragie_visceres_id"
+                                 baseTableName="fiche"
+                                 constraintName="fk_fiche__hemorragie_visceres_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="hemorragie_visceres"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="saignementsnc_id"
+                                 baseTableName="fiche"
+                                 constraintName="fk_fiche__saignementsnc_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="saignement_snc"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="fiche"
+                                 constraintName="fk_fiche__user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="patient_id"
+                                 baseTableName="fiche"
+                                 constraintName="fk_fiche__patient_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="patient"
+                                 />
+    </changeSet>
+</databaseChangeLog>

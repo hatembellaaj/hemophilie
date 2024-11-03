@@ -1,0 +1,99 @@
+{
+  "annotations": {
+    "changelogDate": "20241103170716"
+  },
+  "applications": "*",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "prenom",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "nom",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "nomJeuneFille",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "profession",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "sexe",
+      "fieldType": "Gender",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "MASCULIN,FEMININ"
+    },
+    {
+      "fieldName": "dateNaissance",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "ageActuel",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "origine",
+      "fieldType": "Region",
+      "fieldValues": "SFAX,GABES,GAFSA,KEBILI,TOZEUR,MEDNINE,TATAOUINE,SBZ,KASSERINE,MAHDIA,KAIRAOUANE,MONASTIR,SOUSSE,AUTRE"
+    },
+    {
+      "fieldName": "autreOrigine",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "adresse",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "telephone",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "etatCivil",
+      "fieldType": "CivilStatus",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "CELIBATAIRE,MARIE,DIVORCE,NP"
+    },
+    {
+      "fieldName": "couvertureSociale",
+      "fieldType": "CouvertureSociale",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "CNAM,INDIGENT,NP"
+    },
+    {
+      "fieldName": "prenomPere",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "professionPere",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "nomPrenomMere",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "professionMere",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Patient",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "fiche",
+      "otherEntityRelationshipName": "patient",
+      "relationshipName": "fiches",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

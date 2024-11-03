@@ -1,0 +1,25 @@
+{
+  "annotations": {
+    "changelogDate": "20241103170723"
+  },
+  "applications": "*",
+  "dto": "mapstruct",
+  "entityTableName": "saignement_snc",
+  "fields": [
+    {
+      "fieldName": "reponse",
+      "fieldType": "OuiNonNP",
+      "fieldValues": "OUI,NON,NP"
+    },
+    {
+      "fieldName": "evolution",
+      "fieldType": "EvolutionSNC",
+      "fieldValues": "REGRESSION,DECES"
+    }
+  ],
+  "name": "SaignementSNC",
+  "pagination": "pagination",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

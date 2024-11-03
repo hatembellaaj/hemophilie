@@ -1,0 +1,42 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (hematomePsoas(); as hematomePsoasRef) {
+      <div>
+        <h2 data-cy="hematomePsoasDetailsHeading"><span>Hematome Psoas</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span>ID</span></dt>
+          <dd>
+            <span>{{ hematomePsoasRef.id }}</span>
+          </dd>
+          <dt><span>Reponse</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[hematomePsoasRef.reponse ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Type</span></dt>
+          <dd>
+            <span>{{ { null: '', SPONTANE: 'SPONTANE', PROVOQUE: 'PROVOQUE' }[hematomePsoasRef.type ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Recidive</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[hematomePsoasRef.recidive ?? 'null'] }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Retour</span>
+        </button>
+
+        <button type="button" [routerLink]="['/hematome-psoas', hematomePsoasRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Editer</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

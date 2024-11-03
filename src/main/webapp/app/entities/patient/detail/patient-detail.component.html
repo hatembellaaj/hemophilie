@@ -1,0 +1,118 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (patient(); as patientRef) {
+      <div>
+        <h2 data-cy="patientDetailsHeading"><span>Patient</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span>ID</span></dt>
+          <dd>
+            <span>{{ patientRef.id }}</span>
+          </dd>
+          <dt><span>Prenom</span></dt>
+          <dd>
+            <span>{{ patientRef.prenom }}</span>
+          </dd>
+          <dt><span>Nom</span></dt>
+          <dd>
+            <span>{{ patientRef.nom }}</span>
+          </dd>
+          <dt><span>Nom Jeune Fille</span></dt>
+          <dd>
+            <span>{{ patientRef.nomJeuneFille }}</span>
+          </dd>
+          <dt><span>Profession</span></dt>
+          <dd>
+            <span>{{ patientRef.profession }}</span>
+          </dd>
+          <dt><span>Sexe</span></dt>
+          <dd>
+            <span>{{ { null: '', MASCULIN: 'MASCULIN', FEMININ: 'FEMININ' }[patientRef.sexe ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Date Naissance</span></dt>
+          <dd>
+            <span>{{ patientRef.dateNaissance | formatMediumDate }}</span>
+          </dd>
+          <dt><span>Age Actuel</span></dt>
+          <dd>
+            <span>{{ patientRef.ageActuel }}</span>
+          </dd>
+          <dt><span>Origine</span></dt>
+          <dd>
+            <span>{{
+              {
+                null: '',
+                SFAX: 'SFAX',
+                GABES: 'GABES',
+                GAFSA: 'GAFSA',
+                KEBILI: 'KEBILI',
+                TOZEUR: 'TOZEUR',
+                MEDNINE: 'MEDNINE',
+                TATAOUINE: 'TATAOUINE',
+                SBZ: 'SBZ',
+                KASSERINE: 'KASSERINE',
+                MAHDIA: 'MAHDIA',
+                KAIRAOUANE: 'KAIRAOUANE',
+                MONASTIR: 'MONASTIR',
+                SOUSSE: 'SOUSSE',
+                AUTRE: 'AUTRE',
+              }[patientRef.origine ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>Autre Origine</span></dt>
+          <dd>
+            <span>{{ patientRef.autreOrigine }}</span>
+          </dd>
+          <dt><span>Adresse</span></dt>
+          <dd>
+            <span>{{ patientRef.adresse }}</span>
+          </dd>
+          <dt><span>Telephone</span></dt>
+          <dd>
+            <span>{{ patientRef.telephone }}</span>
+          </dd>
+          <dt><span>Etat Civil</span></dt>
+          <dd>
+            <span>{{
+              { null: '', CELIBATAIRE: 'CELIBATAIRE', MARIE: 'MARIE', DIVORCE: 'DIVORCE', NP: 'NP' }[patientRef.etatCivil ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>Couverture Sociale</span></dt>
+          <dd>
+            <span>{{ { null: '', CNAM: 'CNAM', INDIGENT: 'INDIGENT', NP: 'NP' }[patientRef.couvertureSociale ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Prenom Pere</span></dt>
+          <dd>
+            <span>{{ patientRef.prenomPere }}</span>
+          </dd>
+          <dt><span>Profession Pere</span></dt>
+          <dd>
+            <span>{{ patientRef.professionPere }}</span>
+          </dd>
+          <dt><span>Nom Prenom Mere</span></dt>
+          <dd>
+            <span>{{ patientRef.nomPrenomMere }}</span>
+          </dd>
+          <dt><span>Profession Mere</span></dt>
+          <dd>
+            <span>{{ patientRef.professionMere }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Retour</span>
+        </button>
+
+        <button type="button" [routerLink]="['/patient', patientRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Editer</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

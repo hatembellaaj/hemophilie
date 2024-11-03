@@ -1,0 +1,7 @@
+export enum CircumstanceDecouverte {
+  FORTUITE = 'FORTUITE',
+
+  FAMILIALE = 'FAMILIALE',
+
+  SYNDROME_HEMORRAGIQUE = 'SYNDROME_HEMORRAGIQUE',
+}

@@ -34,7 +34,7 @@ spring:
     type: com.zaxxer.hikari.HikariDataSource
     url: jdbc:mariadb://localhost:3306/hemophilie?useLegacyDatetimeCode=false
     username: root
-    password:
+    password: Hemophilie2024$$$
     hikari:
       poolName: Hikari
       auto-commit: false
@@ -43,6 +43,9 @@ spring:
         prepStmtCacheSize: 250
         prepStmtCacheSqlLimit: 2048
         useServerPrepStmts: true
+  docker:
+    compose:
+      enabled: false
   liquibase:
     # Remove 'faker' if you do not want the sample data to be loaded automatically
     contexts: dev, faker

@@ -1,0 +1,29 @@
+{
+  "annotations": {
+    "changelogDate": "20241103170720"
+  },
+  "applications": "*",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "reponse",
+      "fieldType": "OuiNonNP",
+      "fieldValues": "OUI,NON,NP"
+    },
+    {
+      "fieldName": "type",
+      "fieldType": "TypeManifestation",
+      "fieldValues": "SPONTANE,PROVOQUE"
+    },
+    {
+      "fieldName": "recidive",
+      "fieldType": "OuiNonNP",
+      "fieldValues": "OUI,NON,NP"
+    }
+  ],
+  "name": "HematomePsoas",
+  "pagination": "pagination",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

@@ -1,0 +1,87 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-hemarthrose-heading" data-cy="HemarthroseCreateUpdateHeading">Créer ou éditer un Hemarthrose</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_reponse">Reponse</label>
+          <select class="form-control" name="reponse" formControlName="reponse" id="field_reponse" data-cy="reponse">
+            <option [ngValue]="null"></option>
+            @for (ouiNonNP of ouiNonNPValues; track $index) {
+              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+            }
+          </select>
+        </div>
+
+        @let typeRef = editForm.get('type')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_type">Type</label>
+          <select class="form-control" name="type" formControlName="type" id="field_type" data-cy="type">
+            <option [ngValue]="null"></option>
+            @for (typeManifestation of typeManifestationValues; track $index) {
+              <option [value]="typeManifestation">{{ { null: '', SPONTANE: 'SPONTANE', PROVOQUE: 'PROVOQUE' }[typeManifestation] }}</option>
+            }
+          </select>
+          @if (typeRef.invalid && (typeRef.dirty || typeRef.touched)) {
+            <div>
+              @if (editForm.get('type')?.errors?.required) {
+                <small class="form-text text-danger">Ce champ est obligatoire.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let siegeRef = editForm.get('siege')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_siege">Siege</label>
+          <input type="text" class="form-control" name="siege" id="field_siege" data-cy="siege" formControlName="siege" />
+          @if (siegeRef.invalid && (siegeRef.dirty || siegeRef.touched)) {
+            <div>
+              @if (editForm.get('siege')?.errors?.required) {
+                <small class="form-text text-danger">Ce champ est obligatoire.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_frequencePerAn">Frequence Per An</label>
+          <input
+            type="number"
+            class="form-control"
+            name="frequencePerAn"
+            id="field_frequencePerAn"
+            data-cy="frequencePerAn"
+            formControlName="frequencePerAn"
+          />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Annuler</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Sauvegarder</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

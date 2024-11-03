@@ -1,0 +1,272 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-patient-heading" data-cy="PatientCreateUpdateHeading">Créer ou éditer un Patient</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        @let prenomRef = editForm.get('prenom')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_prenom">Prenom</label>
+          <input type="text" class="form-control" name="prenom" id="field_prenom" data-cy="prenom" formControlName="prenom" />
+          @if (prenomRef.invalid && (prenomRef.dirty || prenomRef.touched)) {
+            <div>
+              @if (editForm.get('prenom')?.errors?.required) {
+                <small class="form-text text-danger">Ce champ est obligatoire.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let nomRef = editForm.get('nom')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_nom">Nom</label>
+          <input type="text" class="form-control" name="nom" id="field_nom" data-cy="nom" formControlName="nom" />
+          @if (nomRef.invalid && (nomRef.dirty || nomRef.touched)) {
+            <div>
+              @if (editForm.get('nom')?.errors?.required) {
+                <small class="form-text text-danger">Ce champ est obligatoire.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_nomJeuneFille">Nom Jeune Fille</label>
+          <input
+            type="text"
+            class="form-control"
+            name="nomJeuneFille"
+            id="field_nomJeuneFille"
+            data-cy="nomJeuneFille"
+            formControlName="nomJeuneFille"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_profession">Profession</label>
+          <input
+            type="text"
+            class="form-control"
+            name="profession"
+            id="field_profession"
+            data-cy="profession"
+            formControlName="profession"
+          />
+        </div>
+
+        @let sexeRef = editForm.get('sexe')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_sexe">Sexe</label>
+          <select class="form-control" name="sexe" formControlName="sexe" id="field_sexe" data-cy="sexe">
+            <option [ngValue]="null"></option>
+            @for (gender of genderValues; track $index) {
+              <option [value]="gender">{{ { null: '', MASCULIN: 'MASCULIN', FEMININ: 'FEMININ' }[gender] }}</option>
+            }
+          </select>
+          @if (sexeRef.invalid && (sexeRef.dirty || sexeRef.touched)) {
+            <div>
+              @if (editForm.get('sexe')?.errors?.required) {
+                <small class="form-text text-danger">Ce champ est obligatoire.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_dateNaissance">Date Naissance</label>
+          <div class="input-group">
+            <input
+              id="field_dateNaissance"
+              data-cy="dateNaissance"
+              type="text"
+              class="form-control"
+              name="dateNaissance"
+              ngbDatepicker
+              #dateNaissanceDp="ngbDatepicker"
+              formControlName="dateNaissance"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dateNaissanceDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_ageActuel">Age Actuel</label>
+          <input type="number" class="form-control" name="ageActuel" id="field_ageActuel" data-cy="ageActuel" formControlName="ageActuel" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_origine">Origine</label>
+          <select class="form-control" name="origine" formControlName="origine" id="field_origine" data-cy="origine">
+            <option [ngValue]="null"></option>
+            @for (region of regionValues; track $index) {
+              <option [value]="region">
+                {{
+                  {
+                    null: '',
+                    SFAX: 'SFAX',
+                    GABES: 'GABES',
+                    GAFSA: 'GAFSA',
+                    KEBILI: 'KEBILI',
+                    TOZEUR: 'TOZEUR',
+                    MEDNINE: 'MEDNINE',
+                    TATAOUINE: 'TATAOUINE',
+                    SBZ: 'SBZ',
+                    KASSERINE: 'KASSERINE',
+                    MAHDIA: 'MAHDIA',
+                    KAIRAOUANE: 'KAIRAOUANE',
+                    MONASTIR: 'MONASTIR',
+                    SOUSSE: 'SOUSSE',
+                    AUTRE: 'AUTRE',
+                  }[region]
+                }}
+              </option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_autreOrigine">Autre Origine</label>
+          <input
+            type="text"
+            class="form-control"
+            name="autreOrigine"
+            id="field_autreOrigine"
+            data-cy="autreOrigine"
+            formControlName="autreOrigine"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_adresse">Adresse</label>
+          <input type="text" class="form-control" name="adresse" id="field_adresse" data-cy="adresse" formControlName="adresse" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_telephone">Telephone</label>
+          <input type="text" class="form-control" name="telephone" id="field_telephone" data-cy="telephone" formControlName="telephone" />
+        </div>
+
+        @let etatCivilRef = editForm.get('etatCivil')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_etatCivil">Etat Civil</label>
+          <select class="form-control" name="etatCivil" formControlName="etatCivil" id="field_etatCivil" data-cy="etatCivil">
+            <option [ngValue]="null"></option>
+            @for (civilStatus of civilStatusValues; track $index) {
+              <option [value]="civilStatus">
+                {{ { null: '', CELIBATAIRE: 'CELIBATAIRE', MARIE: 'MARIE', DIVORCE: 'DIVORCE', NP: 'NP' }[civilStatus] }}
+              </option>
+            }
+          </select>
+          @if (etatCivilRef.invalid && (etatCivilRef.dirty || etatCivilRef.touched)) {
+            <div>
+              @if (editForm.get('etatCivil')?.errors?.required) {
+                <small class="form-text text-danger">Ce champ est obligatoire.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let couvertureSocialeRef = editForm.get('couvertureSociale')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_couvertureSociale">Couverture Sociale</label>
+          <select
+            class="form-control"
+            name="couvertureSociale"
+            formControlName="couvertureSociale"
+            id="field_couvertureSociale"
+            data-cy="couvertureSociale"
+          >
+            <option [ngValue]="null"></option>
+            @for (couvertureSociale of couvertureSocialeValues; track $index) {
+              <option [value]="couvertureSociale">
+                {{ { null: '', CNAM: 'CNAM', INDIGENT: 'INDIGENT', NP: 'NP' }[couvertureSociale] }}
+              </option>
+            }
+          </select>
+          @if (couvertureSocialeRef.invalid && (couvertureSocialeRef.dirty || couvertureSocialeRef.touched)) {
+            <div>
+              @if (editForm.get('couvertureSociale')?.errors?.required) {
+                <small class="form-text text-danger">Ce champ est obligatoire.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_prenomPere">Prenom Pere</label>
+          <input
+            type="text"
+            class="form-control"
+            name="prenomPere"
+            id="field_prenomPere"
+            data-cy="prenomPere"
+            formControlName="prenomPere"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_professionPere">Profession Pere</label>
+          <input
+            type="text"
+            class="form-control"
+            name="professionPere"
+            id="field_professionPere"
+            data-cy="professionPere"
+            formControlName="professionPere"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_nomPrenomMere">Nom Prenom Mere</label>
+          <input
+            type="text"
+            class="form-control"
+            name="nomPrenomMere"
+            id="field_nomPrenomMere"
+            data-cy="nomPrenomMere"
+            formControlName="nomPrenomMere"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_professionMere">Profession Mere</label>
+          <input
+            type="text"
+            class="form-control"
+            name="professionMere"
+            id="field_professionMere"
+            data-cy="professionMere"
+            formControlName="professionMere"
+          />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Annuler</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Sauvegarder</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

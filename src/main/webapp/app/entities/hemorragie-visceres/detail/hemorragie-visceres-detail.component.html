@@ -1,0 +1,50 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (hemorragieVisceres(); as hemorragieVisceresRef) {
+      <div>
+        <h2 data-cy="hemorragieVisceresDetailsHeading"><span>Hemorragie Visceres</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span>ID</span></dt>
+          <dd>
+            <span>{{ hemorragieVisceresRef.id }}</span>
+          </dd>
+          <dt><span>Reponse</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[hemorragieVisceresRef.reponse ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Type</span></dt>
+          <dd>
+            <span>{{
+              { null: '', HEMATEMESE: 'HEMATEMESE', RECTORRAGIE: 'RECTORRAGIE', HEMATURIE: 'HEMATURIE' }[
+                hemorragieVisceresRef.type ?? 'null'
+              ]
+            }}</span>
+          </dd>
+          <dt><span>Exploration</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[hemorragieVisceresRef.exploration ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Examen Lesion</span></dt>
+          <dd>
+            <span>{{ hemorragieVisceresRef.examenLesion }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Retour</span>
+        </button>
+
+        <button type="button" [routerLink]="['/hemorragie-visceres', hemorragieVisceresRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Editer</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

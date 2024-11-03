@@ -11,7 +11,16 @@
     <property name="datetimeType" value="datetime(6)" dbms="mariadb"/>
 
     <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20241103170716_added_entity_Patient.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20241103170717_added_entity_Fiche.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20241103170718_added_entity_Hemarthrose.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20241103170719_added_entity_HematomeSuperficiel.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20241103170720_added_entity_HematomePsoas.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20241103170721_added_entity_HemorragiesCutaneoMuqueuses.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20241103170722_added_entity_HemorragieVisceres.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20241103170723_added_entity_SaignementSNC.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <include file="config/liquibase/changelog/20241103170717_added_entity_constraints_Fiche.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
     <!-- jhipster-needle-liquibase-add-incremental-changelog - JHipster will add incremental liquibase changelogs here -->
 </databaseChangeLog>

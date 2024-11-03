@@ -1,0 +1,28 @@
+{
+  "annotations": {
+    "changelogDate": "20241103170719"
+  },
+  "applications": "*",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "reponse",
+      "fieldType": "OuiNonNP",
+      "fieldValues": "OUI,NON,NP"
+    },
+    {
+      "fieldName": "type",
+      "fieldType": "TypeManifestation",
+      "fieldValues": "SPONTANE,PROVOQUE"
+    },
+    {
+      "fieldName": "siege",
+      "fieldType": "String"
+    }
+  ],
+  "name": "HematomeSuperficiel",
+  "pagination": "pagination",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

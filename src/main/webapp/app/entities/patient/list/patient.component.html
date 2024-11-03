@@ -1,0 +1,255 @@
+<div>
+  <h2 id="page-heading" data-cy="PatientHeading">
+    <span>Patients</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span>Actualiser la liste</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-patient"
+        [routerLink]="['/patient/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span>Créer un nouveau Patient</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (patients?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span>Aucun Patient trouvé</span>
+    </div>
+  }
+
+  @if (patients && patients.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span>ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="prenom">
+              <div class="d-flex">
+                <span>Prenom</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="nom">
+              <div class="d-flex">
+                <span>Nom</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="nomJeuneFille">
+              <div class="d-flex">
+                <span>Nom Jeune Fille</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="profession">
+              <div class="d-flex">
+                <span>Profession</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="sexe">
+              <div class="d-flex">
+                <span>Sexe</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dateNaissance">
+              <div class="d-flex">
+                <span>Date Naissance</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="ageActuel">
+              <div class="d-flex">
+                <span>Age Actuel</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="origine">
+              <div class="d-flex">
+                <span>Origine</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="autreOrigine">
+              <div class="d-flex">
+                <span>Autre Origine</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="adresse">
+              <div class="d-flex">
+                <span>Adresse</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="telephone">
+              <div class="d-flex">
+                <span>Telephone</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="etatCivil">
+              <div class="d-flex">
+                <span>Etat Civil</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="couvertureSociale">
+              <div class="d-flex">
+                <span>Couverture Sociale</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="prenomPere">
+              <div class="d-flex">
+                <span>Prenom Pere</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="professionPere">
+              <div class="d-flex">
+                <span>Profession Pere</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="nomPrenomMere">
+              <div class="d-flex">
+                <span>Nom Prenom Mere</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="professionMere">
+              <div class="d-flex">
+                <span>Profession Mere</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (patient of patients; track trackId(patient)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/patient', patient.id, 'view']">{{ patient.id }}</a>
+              </td>
+              <td>{{ patient.prenom }}</td>
+              <td>{{ patient.nom }}</td>
+              <td>{{ patient.nomJeuneFille }}</td>
+              <td>{{ patient.profession }}</td>
+              <td>{{ { null: '', MASCULIN: 'MASCULIN', FEMININ: 'FEMININ' }[patient.sexe ?? 'null'] }}</td>
+              <td>{{ patient.dateNaissance | formatMediumDate }}</td>
+              <td>{{ patient.ageActuel }}</td>
+              <td>
+                {{
+                  {
+                    null: '',
+                    SFAX: 'SFAX',
+                    GABES: 'GABES',
+                    GAFSA: 'GAFSA',
+                    KEBILI: 'KEBILI',
+                    TOZEUR: 'TOZEUR',
+                    MEDNINE: 'MEDNINE',
+                    TATAOUINE: 'TATAOUINE',
+                    SBZ: 'SBZ',
+                    KASSERINE: 'KASSERINE',
+                    MAHDIA: 'MAHDIA',
+                    KAIRAOUANE: 'KAIRAOUANE',
+                    MONASTIR: 'MONASTIR',
+                    SOUSSE: 'SOUSSE',
+                    AUTRE: 'AUTRE',
+                  }[patient.origine ?? 'null']
+                }}
+              </td>
+              <td>{{ patient.autreOrigine }}</td>
+              <td>{{ patient.adresse }}</td>
+              <td>{{ patient.telephone }}</td>
+              <td>
+                {{ { null: '', CELIBATAIRE: 'CELIBATAIRE', MARIE: 'MARIE', DIVORCE: 'DIVORCE', NP: 'NP' }[patient.etatCivil ?? 'null'] }}
+              </td>
+              <td>{{ { null: '', CNAM: 'CNAM', INDIGENT: 'INDIGENT', NP: 'NP' }[patient.couvertureSociale ?? 'null'] }}</td>
+              <td>{{ patient.prenomPere }}</td>
+              <td>{{ patient.professionPere }}</td>
+              <td>{{ patient.nomPrenomMere }}</td>
+              <td>{{ patient.professionMere }}</td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/patient', patient.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline">Voir</span>
+                  </a>
+
+                  <a [routerLink]="['/patient', patient.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline">Editer</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(patient)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline">Supprimer</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+  @if (patients && patients.length > 0) {
+    <div>
+      <div class="d-flex justify-content-center">
+        <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItems"
+          [page]="page"
+          [pageSize]="itemsPerPage"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="navigateToPage($event)"
+        ></ngb-pagination>
+      </div>
+    </div>
+  }
+</div>

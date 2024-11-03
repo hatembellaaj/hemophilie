@@ -1,0 +1,29 @@
+export enum Region {
+  SFAX = 'SFAX',
+
+  GABES = 'GABES',
+
+  GAFSA = 'GAFSA',
+
+  KEBILI = 'KEBILI',
+
+  TOZEUR = 'TOZEUR',
+
+  MEDNINE = 'MEDNINE',
+
+  TATAOUINE = 'TATAOUINE',
+
+  SBZ = 'SBZ',
+
+  KASSERINE = 'KASSERINE',
+
+  MAHDIA = 'MAHDIA',
+
+  KAIRAOUANE = 'KAIRAOUANE',
+
+  MONASTIR = 'MONASTIR',
+
+  SOUSSE = 'SOUSSE',
+
+  AUTRE = 'AUTRE',
+}

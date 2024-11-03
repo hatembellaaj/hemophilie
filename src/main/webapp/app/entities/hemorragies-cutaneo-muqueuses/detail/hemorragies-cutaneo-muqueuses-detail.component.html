@@ -1,0 +1,55 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (hemorragiesCutaneoMuqueuses(); as hemorragiesCutaneoMuqueusesRef) {
+      <div>
+        <h2 data-cy="hemorragiesCutaneoMuqueusesDetailsHeading"><span>Hemorragies Cutaneo Muqueuses</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span>ID</span></dt>
+          <dd>
+            <span>{{ hemorragiesCutaneoMuqueusesRef.id }}</span>
+          </dd>
+          <dt><span>Reponse</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[hemorragiesCutaneoMuqueusesRef.reponse ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Type</span></dt>
+          <dd>
+            <span>{{
+              {
+                null: '',
+                CHUTE_DENTAIRE: 'CHUTE_DENTAIRE',
+                PLAIE_LANGUE: 'PLAIE_LANGUE',
+                GINGIVORRAGIES: 'GINGIVORRAGIES',
+                EPISTAXIS: 'EPISTAXIS',
+                ECHYMOSES: 'ECHYMOSES',
+              }[hemorragiesCutaneoMuqueusesRef.type ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>Frequence Per An</span></dt>
+          <dd>
+            <span>{{ hemorragiesCutaneoMuqueusesRef.frequencePerAn }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Retour</span>
+        </button>
+
+        <button
+          type="button"
+          [routerLink]="['/hemorragies-cutaneo-muqueuses', hemorragiesCutaneoMuqueusesRef.id, 'edit']"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Editer</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

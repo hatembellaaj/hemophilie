@@ -1,0 +1,38 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (saignementSNC(); as saignementSNCRef) {
+      <div>
+        <h2 data-cy="saignementSNCDetailsHeading"><span>Saignement SNC</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span>ID</span></dt>
+          <dd>
+            <span>{{ saignementSNCRef.id }}</span>
+          </dd>
+          <dt><span>Reponse</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[saignementSNCRef.reponse ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Evolution</span></dt>
+          <dd>
+            <span>{{ { null: '', REGRESSION: 'REGRESSION', DECES: 'DECES' }[saignementSNCRef.evolution ?? 'null'] }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Retour</span>
+        </button>
+
+        <button type="button" [routerLink]="['/saignement-snc', saignementSNCRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Editer</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

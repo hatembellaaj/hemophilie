@@ -1,0 +1,225 @@
+// Entité Patient pour les informations de base
+entity Patient {
+    prenom String required,
+    nom String required,
+    nomJeuneFille String,
+    profession String,
+    sexe Gender required,
+    dateNaissance LocalDate,
+    ageActuel Integer,
+    origine Region,
+    autreOrigine String, // Si "origine" est "Autre"
+    adresse String,
+    telephone String,
+    etatCivil CivilStatus required,
+    couvertureSociale CouvertureSociale required,
+    prenomPere String,
+    professionPere String,
+    nomPrenomMere String,
+    professionMere String
+}
+
+enum Gender {
+    MASCULIN, FEMININ
+}
+
+enum Region {
+    SFAX, GABES, GAFSA, KEBILI, TOZEUR, MEDNINE, TATAOUINE, SBZ, KASSERINE, MAHDIA, KAIRAOUANE, MONASTIR, SOUSSE, AUTRE
+}
+
+enum CivilStatus {
+    CELIBATAIRE, MARIE, DIVORCE, NP
+}
+
+enum CouvertureSociale {
+    CNAM, INDIGENT, NP
+}
+
+// Entité Fiche pour centraliser les informations de diagnostic et de suivi
+entity Fiche {
+    dossierNumber String required,
+    ordreNumber String,
+    indexNumber String,
+    anneeDiagnostic Integer,
+    diagnostic DiagnosticType required,
+    autreDiagnostic String,
+    dateEnregistrementRegistre LocalDate,
+    consentementRegistre Boolean,
+
+    // Antécédents familiaux
+    parentsConsanguins OuiNonNP,
+    degreParenteConsanguins String,
+    casSimilairesFamille OuiNonNP,
+    nbreCasSimilaires Integer,
+    degreParenteCasSimilaires String,
+    casDecesSyndromeHemorragique OuiNonNP,
+    nbreCasDeces Integer,
+    formeHemophilie FormeHemophilie,
+    nbreFreres Integer,
+    nbreSoeurs Integer,
+
+    // Biologie
+    dateTestConfirmation LocalDate,
+    hemogrammeHb Double,
+    hemogrammeHt Double,
+    plaquettes Integer,
+    tp Double,
+    fibrinogene Double,
+    tcaMT Double,
+    tcaMT2h Double,
+    tcaTemoin2h Double,
+    ts TestStatus,
+    circumstanceDecouverte CircumstanceDecouverte,
+    date1erSigneClinique LocalDate,
+    ageDiagnostic Integer,
+
+    // Traitement
+    priseEnCharge PriseEnChargeType required,
+    causePriseEnCharge String,
+    doseProphylaxie String,
+    frequenceProphylaxie Integer,
+    debutProphylaxie LocalDate,
+    modaliteInjection InjectionType,
+    typeTraitementSubstitutif TraitementType,
+    age1ereSubstitution Integer,
+    psl OuiNonNP,
+    plasmaFraisCongele OuiNonNP,
+    cryoprecipite OuiNonNP,
+
+    // Complications
+    complicationsOrthopediques OuiNonNP,
+    complicationInhibiteurs OuiNonNP,
+    testRecuperationFAH TestStatus,
+    resultatTestRecuperation TestResult,
+
+    // Évolution
+    vieSociale VieSocialeStatus,
+    etatMarital OuiNonNP,
+    enfants OuiNonNP,
+    handicap OuiNonNP,
+    typeHandicap String,
+    activiteSportive OuiNonNP,
+    typeActiviteSportive String,
+    decede OuiNonNP,
+    causeDateDeces String
+}
+
+// Enums pour gérer les choix
+enum OuiNonNP {
+    OUI, NON, NP
+}
+
+enum DiagnosticType {
+    HEMOPHILIE, WILLEBRAND, THROMBOPATHIE, DEFICIT_FACTEUR_VII, DEFICIT_FACTEUR_XI, DEFICIT_FACTEUR_XIII, DEFICIT_COMBINE
+}
+
+enum FormeHemophilie {
+    SPORADIQUE, HEREDITAIRE
+}
+
+enum TestStatus {
+    FAIT, NON_FAIT, NORMAL, ALLONGE
+}
+
+enum CircumstanceDecouverte {
+    FORTUITE, FAMILIALE, SYNDROME_HEMORRAGIQUE
+}
+
+enum PriseEnChargeType {
+    A_LA_DEMANDE, PROPHYLAXIE
+}
+
+enum InjectionType {
+    AUTO_INJECTION, INJECTION_PARENT, INJECTION_HOPITAL
+}
+
+enum TraitementType {
+    PLASMATIQUE, RECOMBINANT
+}
+
+enum TestResult {
+    NORMAL, DIMINUE
+}
+
+enum VieSocialeStatus {
+    PRESCOLAIRE, SCOLARISE, CHOMEUR, TRAVAILLE
+}
+
+// Entités pour les manifestations cliniques spécifiques
+entity Hemarthrose {
+    reponse OuiNonNP,
+    type TypeManifestation required,
+    siege String required,
+    frequencePerAn Integer
+}
+
+entity HematomeSuperficiel {
+    reponse OuiNonNP,
+    type TypeManifestation, // Visible si reponse est OUI
+    siege String // Visible si reponse est OUI
+}
+
+entity HematomePsoas {
+    reponse OuiNonNP,
+    type TypeManifestation, // Visible si reponse est OUI
+    recidive OuiNonNP // Récidive
+}
+
+entity HemorragiesCutaneoMuqueuses {
+    reponse OuiNonNP,
+    type TypeHemorragie, // Visible si reponse est OUI
+    frequencePerAn Integer
+}
+
+entity HemorragieVisceres {
+    reponse OuiNonNP,
+    type TypeHemorragieVisceres,
+    exploration OuiNonNP,
+    examenLesion String
+}
+
+entity SaignementSNC {
+    reponse OuiNonNP,
+    evolution EvolutionSNC
+}
+
+enum TypeManifestation {
+    SPONTANE, PROVOQUE
+}
+
+enum TypeHemorragie {
+    CHUTE_DENTAIRE, PLAIE_LANGUE, GINGIVORRAGIES, EPISTAXIS, ECHYMOSES
+}
+
+enum TypeHemorragieVisceres {
+    HEMATEMESE, RECTORRAGIE, HEMATURIE
+}
+
+enum EvolutionSNC {
+    REGRESSION, DECES
+}
+
+// Relations entre Fiche et les sous-entités
+relationship OneToOne {
+    Fiche{hemarthrose} to Hemarthrose,
+    Fiche{hematomeSuperficiel} to HematomeSuperficiel,
+    Fiche{hematomePsoas} to HematomePsoas,
+    Fiche{hemorragiesCutaneoMuqueuses} to HemorragiesCutaneoMuqueuses,
+    Fiche{hemorragieVisceres} to HemorragieVisceres,
+    Fiche{saignementSNC} to SaignementSNC
+}
+
+// Relations avec Patient et User
+relationship OneToMany {
+    Patient{fiches} to Fiche{patient}
+}
+
+relationship ManyToOne {
+    Fiche{user} to User with builtInEntity
+}
+
+// DTOs, Pagination et Services
+dto * with mapstruct
+paginate * with pagination
+service all with serviceClass
+
